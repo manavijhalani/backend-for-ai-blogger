@@ -3,4 +3,3 @@ flask_cors
 google-generativeai
 gunicorn
 beautifulsoup4
-
