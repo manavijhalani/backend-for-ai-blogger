@@ -38,12 +38,13 @@ def generate_blog():
         topic = data.get("topic")
         language = data.get("language", "English")
         blog_type = data.get("blog_type", "text")
+        details=data.get("details")
 
         if not topic:
             return jsonify({"error": "Topic is required"}), 400
 
         # Generate blog content
-        prompt = f"Write a detailed and engaging blog post on the topic: {topic}. The blog should be written in {language}. Provide a list of references and citations."
+        prompt = f"Write a detailed and engaging blog post on the topic: {topic}. The blog should be written in {language}. Also additionally it must include information about {details}. Provide a list of references and citations."
         response = model.generate_content(prompt)
         blog_content = response.text if response and hasattr(response, 'text') else "Failed to generate blog content."
 
@@ -142,7 +143,3 @@ def publish_telegram():
         return jsonify({"error": str(e)}), 500
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-
-
-
-
